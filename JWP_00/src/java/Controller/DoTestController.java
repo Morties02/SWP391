@@ -8,6 +8,7 @@ import DAL.DAO.TestDAO;
 import Model.Question;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -77,15 +78,23 @@ public class DoTestController extends HttpServlet {
         List<Question> listQ = dao.getQuestionOfTest(testId);
         double PPQ = 10/(double)listQ.size();
         double result = 0;
+        //initialize trueCount variable to count number of correct answer
+        int trueCount = 0;
         
         for(Question q: listQ){
             String opt = request.getParameter("option"+q.getId());
             if(opt.equalsIgnoreCase(q.getAnswer())){
+                trueCount++;
                 result += PPQ;
             }
         }
         
-        request.setAttribute("result", result);
+        String numOfCorr = trueCount + "/" + listQ.size();
+        
+        DecimalFormat df = new DecimalFormat("0.00");
+        
+        request.setAttribute("trueCount", numOfCorr);
+        request.setAttribute("result", df.format(result));
         request.getRequestDispatcher("testResult.jsp").forward(request, response);
     }
 

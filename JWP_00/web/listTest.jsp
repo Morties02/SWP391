@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!Doctype html>
+<%@include file="/includes/header.jsp"%>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -29,100 +30,85 @@
                 display: block;
             }
         </style>
+        <style>
+            .sidenav {
+                height: 100%; /* 100% Full-height */
+                width: 0; /* 0 width - change this with JavaScript */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Stay on top */
+                top: 0; /* Stay at the top */
+                left: 0;
+                background-color: #FFFFFF; /* Black*/
+                overflow-x: hidden; /* Disable horizontal scroll */
+                padding-top: 60px; /* Place content 60px from the top */
+                transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+            }
+
+            /* The navigation menu links */
+            .sidenav ul a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+
+            /* When you mouse over the navigation links, change their color */
+            .sidenav ul a :hover {
+                color: #f1f1f1;
+            }
+
+            /* Position and style the close button (top right corner) */
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+            /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+            #main {
+                transition: margin-left .5s;
+                padding: 20px;
+            }
+
+            /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+            @media screen and (max-height: 450px) {
+                .sidenav {
+                    padding-top: 15px;
+                }
+                .sidenav a {
+                    font-size: 18px;
+                }
+            }
+        </style>
 
     </head>
+    
+      <div class="card sidenav" id="mySidenav" style="width: 0" >
+        <div class="card-header">
+            Your Classes ${count}
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-    <body style="background-color: #342c2c;">
-        <!--Header-->
+        </div>
+        <ul class="list-group list-group-flush">
+            <c:forEach items="${stdClasses}" var="cl">
+                <li class="list-group-item">                
+                    <a href="viewlisttest?classId=${cl.getClassId()}">
+                        ${cl.getClassName()}                
+                    </a>
+                </li>
+            </c:forEach>
+        </ul>
+    </div> 
 
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow" style="background-color: #902020;">
-                <div class="container-fluid">
-                    <a class="navbar-brand">Oh Men!</a>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link text-dark" href="#" id="navbarDropdownMenuLink" role="button"
-                                   data-mdb-toggle="dropdown" aria-expanded="false">
-                                    Manage
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li>
-                                        <a class="dropdown-item">Product</a>
-                                        <ul class="dropdown-menu dropdown-submenu">
-                                            <li>
-                                                <a class="dropdown-item">Product List</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item">
-                                            Order
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-submenu">
-                                            <li>
-                                                <a class="dropdown-item">Shopping</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item">Orders</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" >Pink seasons</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item cart">
-                            <form style="margin: 0; padding: 0;">
-                                <input id="cartId" data-cart-id="@cartId" type="hidden" />
-                                <button class="button bg-transparent" button="submit" id="cart" data-count="">
-                                    <i style="font-size:24px" class="fa">
-                                        <img src="/img/cart.png" style="width: 25px; height: 25px; margin-top: 8px; margin-right: 15px;" data-count="" />
-                                    </i>
-                                </button>
-                            </form>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-dark" href="#" id="navbarDropdownMenuLink" role="button"
-                               data-mdb-toggle="dropdown" aria-expanded="false">
-                                Account
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Login">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-white bg-secondary"></i>
-                                        Login
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Logout">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white bg-secondary"></i>
-                                        Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <section class="vh-100" style="background-color:	#342c2c;">
-            <div class="container py-5 h-100">
+        <section class="vh-100" style="background-color: white;">
+            <div class="container py-5 vh-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card shadow-2-strong" style="border-radius: 1rem; background-color: #902020;">
+                        <div class="card shadow-2-strong vh-100" style="border-radius: 1rem; background-color: white;">
                             <div class="card-body p-5 text-center">
                                 <table class="table">
                                     <thead>
@@ -153,25 +139,20 @@
                 </div>
             </div>
         </section>
+    
+       
 
-        <hr style="color: white;">
+     <hr style="color: white;">
 
-        <footer style="background-color:#342c2c;">
-            <div class="row d-flex justify-content-center align-items-center ">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <p class="justify-content-center text-white">Thank you! This is our page please leave anything as u like!</p>
-                </div>
-            </div>
-        </footer>
-        <!-- Bootstrap JS Bundle with Popper -->
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-        <!-- MDB -->
-        <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"
-        ></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- MDB -->
+    <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"
+    ></script>
+</body>
 </html>

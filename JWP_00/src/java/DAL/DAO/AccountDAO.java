@@ -40,21 +40,46 @@ public class AccountDAO {
         } return listAccount;
         }
         
-       public boolean login(String username, String password) throws SQLException {
+       public Account login(String username, String password) throws SQLException {
+           
+         AccountDAO dao = new AccountDAO();
+         Account result = new Account();
+           
         try {
-            AccountDAO dao = new AccountDAO();
-            
             List<Account> listAccount = dao.getAllAccount();
             
             for(Account a: listAccount){
                 if(a.getUsername().equals(username) && a.getPWD().equals(password)){
-                    return true;
+                    
+                    result = a;
+                    
+                    return result;
                 }
             }
         }  catch (ClassNotFoundException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return result;
     }
+       
+        public List<Account> getAllStudent() throws SQLException, ClassNotFoundException{
+            String query = "select * from ACCOUNT where RoleId = 3";
+            List<Account> listAccount = new ArrayList<>();
+
+            try{
+                conn = new DbContext().getConnection();
+                ps = conn.prepareStatement(query);
+                rs = ps.executeQuery();
+                
+                
+                while(rs.next()){
+                   listAccount.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 0));
+                } 
+                
+                return listAccount;
+            } catch(SQLException ex){
+            } catch (ClassNotFoundException ex){
+        } return listAccount;
+        }
 
 }

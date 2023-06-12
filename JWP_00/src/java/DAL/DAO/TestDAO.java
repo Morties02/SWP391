@@ -156,4 +156,28 @@ public class TestDAO {
         }
         return result;
     }
+    
+    public List<Test> getTestByClass(int classId){
+        String query = "select * from Test where ClassId = ? ";
+        List<Test> result = new ArrayList<>();
+        
+        try {
+            conn = new DbContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, classId);
+            rs = ps.executeQuery();
+            
+            //Test(int TestId, int ClassId, String EnrollmentKey)
+            while(rs.next()){
+               result.add(new Test(rs.getInt(1), rs.getInt(2),rs.getString(3), rs.getString(4)));
+            }
+            return result;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TestDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
 }

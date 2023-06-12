@@ -18,6 +18,9 @@ public class Account {
     private String PWD;
     private int RoleId;
     private int ProfileId;
+    
+    public Account(){
+    }
 
     public Account(int UserId, String Username, String PWD, int RoleId, int ProfileId) {
         this.UserId = UserId;

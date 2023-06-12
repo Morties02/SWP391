@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!Doctype html>
+<%--<%@include file="/includes/header.jsp"%>--%>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -31,97 +32,11 @@
  
   </head>
     
-  <body style="background-color: #342c2c;">
-    <!--Header-->
-   
-        <header>
-      <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow" style="background-color: #902020;">
-        <div class="container-fluid">
-            <a class="navbar-brand">Oh Men!</a>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-dark" href="#" id="navbarDropdownMenuLink" role="button"
-                           data-mdb-toggle="dropdown" aria-expanded="false">
-                            Action
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item">Manage</a>
-                                <ul class="dropdown-menu dropdown-submenu">
-                                    <li>
-                                        <a class="dropdown-item">Student</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item">Lecturer</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item">
-                                   Exam
-                                </a>
-                                <ul class="dropdown-menu dropdown-submenu">
-                                    <li>
-                                        <a class="dropdown-item" href="create-test">Create test</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item">View result</a>
-                                    </li>
-                                     <li>
-                                        <a class="dropdown-item" href="viewlisttest">Test list</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-            <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item cart">
-                    <form style="margin: 0; padding: 0;">
-                        <input id="cartId" data-cart-id="@cartId" type="hidden" />
-                        <button class="button bg-transparent" button="submit" id="cart" data-count="">
-                            <i style="font-size:24px" class="fa">
-                                <img src="/img/cart.png" style="width: 25px; height: 25px; margin-top: 8px; margin-right: 15px;" data-count="" />
-                            </i>
-                        </button>
-                    </form>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-dark" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-mdb-toggle="dropdown" aria-expanded="false">
-                        Account
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Login">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-white bg-secondary"></i>
-                                Login
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Logout">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white bg-secondary"></i>
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
-    </header>
-  
-    <section class="vh-100" style="background-color:	#342c2c;">
+    <section class="vh-100" style="background-color:	#FFFFFF">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div class="card shadow-2-strong" style="border-radius: 1rem; background-color: #902020;">
+            <div class="card shadow-2-strong" style="border-radius: 1rem; background-color: #FFFFFF;">
               <div class="card-body p-5 text-center">
                 <h3 class="mb-5" style="color: black;">Sign in</h3>
                 <form action="login" method="post">
@@ -139,7 +54,7 @@
                   <label class="form-check-label" for="rempass"> Remember password </label>
                 </div>
     
-                <button class="btn btn-primary btn-lg btn-block" style="background-color: black; border: black;" type="submit">Login</button>
+                <button class="btn btn-primary btn-lg btn-block" style="background-color: blue; border: black;" type="submit">Login</button>
                 </form>
                 <hr class="my-4">
                 <p class="small "><a class="text-dark" href="#!">Forgot password?</a></p>

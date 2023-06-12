@@ -4,10 +4,17 @@ public class Classes {
     private int classId;
     private int lecturerId;
     private String className;
+    private String EnrollKey;
     
     public Classes(){}
 
-    public Classes(int classId, int lecturerId, String className) {
+    public Classes(int classId, int lecturerId, String className, String enrollKey) {
+        this.classId = classId;
+        this.lecturerId = lecturerId;
+        this.className = className;
+        this.EnrollKey = enrollKey;
+    }
+     public Classes(int classId, int lecturerId, String className) {
         this.classId = classId;
         this.lecturerId = lecturerId;
         this.className = className;
@@ -35,6 +42,14 @@ public class Classes {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public String getEnrollKey() {
+        return EnrollKey;
+    }
+
+    public void setEnrollKey(String EnrollKey) {
+        this.EnrollKey = EnrollKey;
     }
     
     

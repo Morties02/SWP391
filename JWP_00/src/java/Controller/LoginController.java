@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -68,8 +69,14 @@ public class LoginController extends HttpServlet {
         
         AccountDAO dao = new AccountDAO();
         try {
-            if(dao.login(username, password)){
-               response.sendRedirect("teacherHome.jsp");
+            if((dao.login(username, password) != null)){
+                
+               HttpSession session = request.getSession();
+               
+               session.setAttribute("account", dao.login(username, password));
+                
+               response.sendRedirect("student-home");
+//                request.getRequestDispatcher("student-home").forward(request, response);
             } else {
                 List<Account> list = dao.getAllAccount();
                 list.add(new Account(3, "Nam", "nu", 0, 0));
